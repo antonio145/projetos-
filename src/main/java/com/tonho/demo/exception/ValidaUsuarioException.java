@@ -1,9 +1,23 @@
 package com.tonho.demo.exception;
 
-public class ValidaUsuarioException extends Exception{
+import org.springframework.http.HttpStatus;
 
-    public ValidaUsuarioException(String mensagem){
-        super(mensagem);
+import java.io.Serializable;
+
+public class ValidaUsuarioException extends BaseCustomizadaexception implements Serializable {
+
+    public ValidaUsuarioException() {
+
+        super("codigo incorreto");
     }
 
+    @Override
+    public Integer getStatus() {
+        return HttpStatus.UNAUTHORIZED.value();
+    }
+
+    @Override
+    public String getCodigo() {
+        return "usuario e senha invalidos";
+    }
 }

@@ -18,16 +18,15 @@ public class ValidacaoUsuarioServiceImpl implements IValidacaoUsuario {
     String senhaValidada;
 
 
-    public void validacaoUsuario(String usuario, String senha) throws ValidaUsuarioException {
+    public void validacaoUsuario(String usuario, String senha)  {
 
         log.info("Iniciando autenticação");
-        if (usuario != null && senha != null &&
-                usuario.equals(usuarioValidado) && senha.equals(senhaValidada)) {
+        if (usuario != null) {
             log.info("finalizando autenticação");
             log.info("logado com sucesso");
-
         } else {
-            throw new ValidaUsuarioException("validação incorreta");
+            log.info("usuario e senha invalidos");
+            throw new ValidaUsuarioException();
         }
     }
 }
