@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PessoaDTO {
+
     @JsonProperty("altura")
     private Float altura;
 

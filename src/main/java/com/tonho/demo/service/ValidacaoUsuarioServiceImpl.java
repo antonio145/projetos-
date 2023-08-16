@@ -1,30 +1,35 @@
 package com.tonho.demo.service;
 
 
-import com.tonho.demo.dto.UsuarioDTO;
+import com.tonho.demo.exception.ValidaUsuarioException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+
 @Service
+@Slf4j
 public class ValidacaoUsuarioServiceImpl implements IValidacaoUsuario {
 
-    public UsuarioDTO validacaoUsuario(String usuario, String senha) {
+    @Value("validation.user")
+    String usuarioValidado;
+
+    @Value("validation.password")
+    String senhaValidada;
 
 
-        String userName = "USER";
-        String userPassword = "PASSWORD";
+    public void validacaoUsuario(String usuario, String senha) throws ValidaUsuarioException {
 
-        if (userName != null && userPassword != null &&
-                userName.equals(usuario) && userPassword.equals(senha)) {
+        log.info("Iniciando autenticação");
+        if (usuario != null && senha != null &&
+                usuario.equals(usuarioValidado) && senha.equals(senhaValidada)) {
+            log.info("finalizando autenticação");
+            log.info("logado com sucesso");
+
+        } else {
+            throw new ValidaUsuarioException("validação incorreta");
         }
-        UsuarioDTO build = UsuarioDTO.builder()
-                .usuario(usuario)
-                .senha(senha)
-                .build();
-        return build;
-
     }
-
-
 }
 
 

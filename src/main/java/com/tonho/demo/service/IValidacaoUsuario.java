@@ -1,10 +1,10 @@
 package com.tonho.demo.service;
 
-import com.tonho.demo.dto.UsuarioDTO;
+import com.tonho.demo.exception.ValidaUsuarioException;
 
 public interface IValidacaoUsuario {
 
-    UsuarioDTO validacaoUsuario(String usuario, String senha);
+    void validacaoUsuario(String usuario, String senha) throws ValidaUsuarioException;
 
 
 }
