@@ -1,5 +1,6 @@
 package com.tonho.demo.strategy;
 
+import com.tonho.demo.dto.ImcDTO;
 import com.tonho.demo.enums.ResultadoEnum;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,25 @@ public class CalculoImcStrategyImpl implements ICalculoImcStrategy {
             resultado = ResultadoEnum.OBESIDADE.getResultado();
         }
 
-
         return resultado;
     }
+
+    @Override
+    public ImcDTO strategyCalcularPesoIdeal(ImcDTO imcDTO, Float altura) {
+        return null;
+    }
+
+  /*  @Override
+    public strategyCalcularPesoIdeal(ImcDTO imcDTO, Float altura) {
+        ImcDTO resultadoPesoIdeal;
+        resultadoPesoIdeal = imcDTO / (altura * altura);
+
+        return resultadoPesoIdeal;*/
+
+
+    }
+
+
 }
 
 

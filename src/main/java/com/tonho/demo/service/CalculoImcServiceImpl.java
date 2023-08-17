@@ -21,12 +21,15 @@ public class CalculoImcServiceImpl implements ICalculoImc {
         Float imc = peso / (altura * altura);
         String resultado = calculoImcStrategy.strategyImc(imc);
 
+
         log.info("terminando calculo de Imc");
-        return ImcDTO.builder()
+        return  ImcDTO.builder()
                 .imc(resultado)
+                //pesoIdeal()
                 .build();
 
     }
+
 
 
 }

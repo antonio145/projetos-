@@ -4,6 +4,5 @@ public interface CustmizacaoException {
 
     Integer getStatus();
 
-    String getCodigo();
 
 }

@@ -1,7 +1,7 @@
 package com.tonho.demo.service;
 
 
-import com.tonho.demo.exception.ValidaUsuarioException;
+import com.tonho.demo.exception.UsuarioEsenhaInvalidaException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,23 +11,22 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class ValidacaoUsuarioServiceImpl implements IValidacaoUsuario {
 
-    @Value("validation.user")
+    @Value("${USER_USUARIO}")
     String usuarioValidado;
 
-    @Value("validation.password")
+    @Value("${PASSWORD_SENHA}")
     String senhaValidada;
 
 
-    public void validacaoUsuario(String usuario, String senha)  {
+    public void validacaoUsuario(String usuario, String senha) {
 
         log.info("Iniciando autenticação");
-        if (usuario != null) {
-            log.info("finalizando autenticação");
+        if (usuario.equals(usuarioValidado) && senha.equals(senhaValidada)) {
             log.info("logado com sucesso");
         } else {
-            log.info("usuario e senha invalidos");
-            throw new ValidaUsuarioException();
+            throw new UsuarioEsenhaInvalidaException();
         }
+
     }
 }
 

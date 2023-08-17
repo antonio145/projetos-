@@ -13,7 +13,11 @@ public class ImcDTO {
     @JsonProperty("IMC")
     private String imc;
 
-    public ImcDTO(String imc) {
+    @JsonProperty("pesoIdeal")
+    private Float pesoIdeal;
+
+    public ImcDTO(String imc, float pesoIdeal) {
         this.imc = imc;
+        this.pesoIdeal = pesoIdeal;
     }
 }

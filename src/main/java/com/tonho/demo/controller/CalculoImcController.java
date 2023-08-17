@@ -2,7 +2,6 @@ package com.tonho.demo.controller;
 
 import com.tonho.demo.dto.ImcDTO;
 import com.tonho.demo.dto.PessoaDTO;
-import com.tonho.demo.exception.ValidaUsuarioException;
 import com.tonho.demo.service.ICalculoImc;
 import com.tonho.demo.service.IValidacaoUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class CalculoImcController {
     @PostMapping("/calcular-imc")
     public ResponseEntity<ImcDTO> calculoImc(@RequestHeader(value = "user", required = true) String usuario,
                                              @RequestHeader(value = "senha", required = true) String senha,
-                                             @RequestBody PessoaDTO pessoaDTO) throws ValidaUsuarioException {
+                                             @RequestBody PessoaDTO pessoaDTO)throws RuntimeException {
         validacaoUsuarioService.validacaoUsuario(usuario, senha);
         ImcDTO imcDTO = calculoImcService.calcularImc(pessoaDTO.getAltura(), pessoaDTO.getPeso());
         return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(imcDTO);
